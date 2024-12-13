@@ -79,10 +79,10 @@ resource "azurerm_role_assignment" "managed_identity_azure_event_hubs_data_recei
   principal_id         = var.managed_identity_principal_id
 }
 
-resource "azurerm_eventhub_authorization_rule" "event_hub_authorization_rule" {
+resource "azurerm_eventhub_authorization_rule" "azure_policy_central_logging_event_hub_authorization_rule" {
   name                = "azure-policy-central-logging"
   namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
   resource_group_name = var.resource_group_name
   eventhub_name       = azurerm_eventhub.event_hub_central.name
-  send = true
+  send                = true
 }

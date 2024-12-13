@@ -61,7 +61,7 @@ resource "azapi_resource" "function_app" {
   location                  = var.location
   name                      = azurecaf_name.function_name.result
   parent_id                 = data.azurerm_resource_group.resource_group.id
-  tags = merge(var.tags, { "azd-service-name": "siem-logging"})
+  tags                      = merge(var.tags, { "azd-service-name" : "siem-logging" })
   body = jsonencode({
     kind = "functionapp,linux",
     identity = {
@@ -78,7 +78,7 @@ resource "azapi_resource" "function_app" {
             type  = "blobcontainer",
             value = "${var.storage_account_primary_blob_endpoint}${var.storage_account_function_app_container_name}",
             authentication = {
-              type = "userassignedidentity"
+              type                           = "userassignedidentity"
               userAssignedIdentityResourceId = var.managed_identity_id
             }
           }
