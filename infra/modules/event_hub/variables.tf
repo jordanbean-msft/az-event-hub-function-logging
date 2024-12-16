@@ -47,3 +47,8 @@ variable "message_retention" {
   description = "The message retention of the event hub"
   type        = number
 }
+
+variable "log_analytics_workspace_id" {
+  description = "The id of the log analytics workspace"
+  type        = string
+}

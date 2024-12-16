@@ -69,6 +69,7 @@ module "event_hub" {
   maximum_throughput_units      = var.event_hub.maximum_throughput_units
   partition_count               = var.event_hub.partition_count
   message_retention             = var.event_hub.message_retention
+  log_analytics_workspace_id = module.log_analytics.log_analytics_workspace_id
 }
 
 # ------------------------------------------------------------------------------------------------------
@@ -90,13 +91,14 @@ module "functions" {
   storage_account_function_app_container_name = module.storage_account.function_app_container_name
   app_settings = {
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = module.application_insights.application_insights_connection_string
+    "AzureWebJobsStorage" = module.storage_account.storage_account_connection_string
     "AzureWebJobsStorage__accountName"      = module.storage_account.storage_account_name
     "EVENT_HUB__fullyQualifiedNamespace"    = module.event_hub.event_hub_namespace_fqdn
     "EVENT_HUB_CENTRAL_NAME"                = module.event_hub.event_hub_central_name
     "EVENT_HUB_SIEM_NAME"                   = module.event_hub.event_hub_siem_name
     "EVENT_HUB__credential"                 = "managedidentity"
     "EVENT_HUB__clientId"                   = module.managed_identity.user_assigned_identity_client_id
-    "FUNCTION_EXTENSION_VERSION"            = "~3"
+    "FUNCTIONS_EXTENSION_VERSION"            = "~3"
   }
   sku_name                              = var.function_app.sku_name
   zone_balancing_enabled                = var.function_app.zone_balancing_enabled

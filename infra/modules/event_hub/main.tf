@@ -79,10 +79,65 @@ resource "azurerm_role_assignment" "managed_identity_azure_event_hubs_data_recei
   principal_id         = var.managed_identity_principal_id
 }
 
-resource "azurerm_eventhub_authorization_rule" "azure_policy_central_logging_event_hub_authorization_rule" {
+resource "azurerm_eventhub_namespace_authorization_rule" "azure_policy_central_logging_event_hub_authorization_rule" {
   name                = "azure-policy-central-logging"
   namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
   resource_group_name = var.resource_group_name
-  eventhub_name       = azurerm_eventhub.event_hub_central.name
   send                = true
+  listen              = true
+  manage              = true
+}
+
+resource "azurerm_monitor_diagnostic_setting" "event_hub_logging" {
+  name                       = "event-hub-logging"
+  target_resource_id         = azurerm_eventhub_namespace.event_hub_namespace.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+
+  enabled_log {
+    category = "ApplicationMetricsLogs"
+  }
+
+  enabled_log {
+    category = "ArchiveLogs"
+  }
+
+  enabled_log {
+    category = "AutoScaleLogs"
+  }
+
+  enabled_log {
+    category = "CustomerManagedKeyUserLogs"
+  }
+
+  enabled_log {
+    category = "DataDRLogs"
+  }
+
+  enabled_log {
+    category = "DiagnosticErrorLogs"
+  }
+
+  enabled_log {
+    category = "EventHubVNetConnectionEvent"
+  }
+
+  enabled_log {
+    category = "KafkaCoordinatorLogs"
+  }
+
+  enabled_log {
+    category = "KafkaUserErrorLogs"
+  }
+
+  enabled_log {
+    category = "OperationalLogs"
+  }
+
+  enabled_log {
+    category = "RuntimeAuditLogs"
+  }
+
+  metric {
+    category = "AllMetrics"
+  }
 }

@@ -22,6 +22,6 @@ output "event_hub_namespace_fqdn" {
   value = "${azurerm_eventhub_namespace.event_hub_namespace.name}.servicebus.windows.net"
 }
 
-output "azure_policy_central_logging_event_hub_authorization_rule" {
-  value = azurerm_eventhub_authorization_rule.event_hub_authorization_rule.id
+output "azure_policy_central_logging_event_hub_authorization_rule_id" {
+  value = azurerm_eventhub_namespace_authorization_rule.azure_policy_central_logging_event_hub_authorization_rule.id
 }
