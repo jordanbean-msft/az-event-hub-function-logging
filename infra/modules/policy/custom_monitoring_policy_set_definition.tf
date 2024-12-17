@@ -32,18 +32,6 @@ METADATA
         },
         "defaultValue": "setByPolicy-EventHub"
       },
-      "categoryGroup": {
-        "type": "String",
-        "metadata": {
-          "displayName": "Category Group",
-          "description": "Diagnostic category group - none, audit, or allLogs."
-        },
-        "allowedValues": [
-          "audit",
-          "allLogs"
-        ],
-        "defaultValue": "audit"
-      },
       "resourceLocation": {
         "type": "String",
         "metadata": {
@@ -78,7 +66,6 @@ PARAMETERS
     {
         "effect": {"value": "[parameters('effect')]"},
         "diagnosticSettingName": {"value": "[parameters('diagnosticSettingName')]"},
-        "categoryGroup": {"value": "[parameters('categoryGroup')]"},
         "resourceLocation": {"value": "[parameters('resourceLocation')]"},
         "eventHubAuthorizationRuleId": {"value": "[parameters('eventHubAuthorizationRuleId')]"},
         "eventHubName": {"value": "[parameters('eventHubName')]"}
