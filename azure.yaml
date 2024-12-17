@@ -1,2 +1,14 @@
-name: template-repository
+name: az-event-hub-function-logging
+infra:
+  provider: terraform
 services:
+  siem-logging:
+    project: ./src/python/siem-logging
+    language: py
+    host: function
+state:
+  remote:
+    backend: AzureBlobStorage
+    config:
+      accountName: saterraformeus2rjb
+      containerName: az-event-hub-function-logging

@@ -1,0 +1,23 @@
+[
+  {
+    "category": "AppServiceHTTPLogs",
+    "fieldsToKeep": ["time", "EventTime", "resourceId", "properties"]
+  },
+  {
+    "category": "AppServiceConsoleLogs",
+    "fieldsToKeep": [
+      "time",
+      "resourceId",
+      "resultDescription",
+      "level",
+      "location"
+    ]
+  },
+  {
+    "category": "MySqlAuditLogs",
+    "fieldsToKeep": [
+      "properties",
+      "resourceId"
+    ]
+  }
+]
