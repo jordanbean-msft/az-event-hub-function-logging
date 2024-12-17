@@ -45,7 +45,9 @@ variable "function_app" {
   })
 }
 
-variable "management_group_name" {
-  description = "The name of the management group to assign the policy to."
-  type        = string
+variable "policy" {
+  type = object({
+    management_group_name = string
+    resource_types        = list(string)
+  })
 }

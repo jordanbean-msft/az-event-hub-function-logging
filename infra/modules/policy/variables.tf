@@ -32,3 +32,8 @@ variable "central_logging_event_hub_name" {
   description = "The name of the Event Hub to use for central logging."
   type        = string
 }
+
+variable "resource_types" {
+  description = "A list of resource types to apply the policy to."
+  type        = list(string)
+}

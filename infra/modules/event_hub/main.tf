@@ -46,13 +46,6 @@ resource "azurerm_eventhub" "event_hub_siem" {
   message_retention = var.message_retention
 }
 
-resource "azurerm_eventhub_consumer_group" "central_logging_replication" {
-  name                = "central-logging-replication"
-  eventhub_name       = azurerm_eventhub.event_hub_central.name
-  namespace_name      = azurerm_eventhub_namespace.event_hub_namespace.name
-  resource_group_name = var.resource_group_name
-}
-
 resource "azurerm_eventhub_consumer_group" "central_siem_replication" {
   name                = "central-siem-replication"
   eventhub_name       = azurerm_eventhub.event_hub_central.name
