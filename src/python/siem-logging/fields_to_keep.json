@@ -12,5 +12,12 @@
       "level",
       "location"
     ]
+  },
+  {
+    "category": "MySqlAuditLogs",
+    "fieldsToKeep": [
+      "properties",
+      "resourceId"
+    ]
   }
 ]
